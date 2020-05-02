@@ -21,7 +21,7 @@ export default class Receipt {
 
   validate() {
     _.each(this.lines, line => {
-      if (!line.match(/\d+公里,等待\d+分钟/)) {
+      if (!line.match(/(\d+)+公里,等待(\d+)+分钟/)) {
         throw new Error('not match');
       }
     });
@@ -30,7 +30,7 @@ export default class Receipt {
   parseEntries() {
     this.entries = _.map(this.lines, line => {
       const [distance, time] = _.map(
-        line.match(/(\d+)公里,等待(\d+)分钟/).slice(1, 3),
+        line.match(/(\d+)+公里,等待(\d+)+分钟/).slice(1, 3),
         s => parseInt(s, 10),
       );
       return { distance, time };
