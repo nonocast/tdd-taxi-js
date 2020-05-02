@@ -31,7 +31,7 @@ export default class Receipt {
     this.entries = _.map(this.lines, line => {
       const [distance, time] = _.map(
         line.match(/(\d+)公里,等待(\d+)分钟/).slice(1, 3),
-        s => parseInt(s, 10)
+        s => parseInt(s, 10),
       );
       return { distance, time };
     });

@@ -19,7 +19,7 @@ export default class Calculator {
     const fare = _.reduce(
       this.rules,
       (sum, each) => sum + each({ distance, time }),
-      0
+      0,
     );
     return Math.round(fare);
   }
