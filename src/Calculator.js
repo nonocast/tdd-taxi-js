@@ -31,7 +31,7 @@ export default class Calculator {
   }
 
   checkRange() {
-    if (!(this.entry.distance > 0) || this.entry.time < 0) {
+    if (this.entry.distance <= 0 || this.entry.time < 0) {
       throw new Error();
     }
     return this;
