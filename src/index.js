@@ -1,4 +1,4 @@
-import Receipt from './Recept';
+import Receipt from './Receipt';
 
 export default function main(testDataFile = 'testData.txt') {
   /* TODO

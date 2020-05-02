@@ -1,4 +1,4 @@
-import Receipt from '../Recept';
+import Receipt from '../Receipt';
 
 test('success cases', () => {
   const receipt = new Receipt('testData.txt');
