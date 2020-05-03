@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
@@ -20,28 +19,27 @@ export default class Receipt {
   }
 
   validate() {
-    _.each(this.lines, line => {
-      if (!line.match(/\d+公里,等待\d+分钟/)) {
+    this.lines.forEach(each => {
+      if (!each.match(/\d+公里,等待\d+分钟/)) {
         throw new Error('not match');
       }
     });
   }
 
   parseEntries() {
-    this.entries = _.map(this.lines, line => {
-      const [distance, time] = _.map(
-        line.match(/(\d+)公里,等待(\d+)分钟/).slice(1, 3),
-        s => parseInt(s, 10),
-      );
-      return { distance, time };
+    this.entries = [];
+    const re = /^(\d+)公里,等待(\d+)分钟$/;
+    this.lines.forEach(line => {
+      const [d, t] = line.match(re).slice(1, 3);
+      this.entries.push({ distance: parseInt(d, 10), time: parseInt(t, 10) });
     });
   }
 
   calc() {
-    this.entries = _.map(this.entries, entry => this.calculator.calc(entry));
+    this.entries = this.entries.map(each => this.calculator.calc(each));
   }
 
   toString() {
-    return _.map(this.entries, each => `收费${each}元\n`).join('');
+    return this.entries.map(each => `收费${each}元\n`).join('');
   }
 }

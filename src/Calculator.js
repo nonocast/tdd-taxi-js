@@ -1,8 +1,3 @@
-import _ from 'lodash';
-
-/**
- * @class Calculator
- */
 export default class Calculator {
   constructor() {
     this.rules = [
@@ -16,12 +11,8 @@ export default class Calculator {
   calc({ distance, time }) {
     this.entry = { distance, time };
     this.checkType().checkRange();
-    const fare = _.reduce(
-      this.rules,
-      (sum, each) => sum + each({ distance, time }),
-      0,
-    );
-    return Math.round(fare);
+    const f = this.rules.reduce((s, rule) => s + rule({ distance, time }), 0);
+    return Math.round(f);
   }
 
   checkType() {
