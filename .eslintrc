@@ -1,9 +1,6 @@
 {
   "extends": "airbnb-base",
-  "plugins": [
-    "prettier",
-    "jest"
-  ],
+  "plugins": ["prettier", "jest"],
   "env": {
     "node": true,
     "jest": true
@@ -23,10 +20,7 @@
     "complexity": ["error", 4],
     "max-params": ["error", 3],
     "quotes": "off",
-    "arrow-parens": [
-      "error",
-      "as-needed"
-    ],
+    "arrow-parens": ["error", "as-needed"],
     "import/prefer-default-export": "warn"
   }
 }
